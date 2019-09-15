@@ -18,5 +18,14 @@ for i in searches:
 print("You now have a choice of {} from this list: ".format(inp))
 for i,j in enumerate(split_urls,1):
         print(i,j)
-x= int(input("Enter your desired choice now: "))
-webbrowser.open(searches[x-1])
+While True:
+    try:
+        choice = int(input("Enter your desired choice now: "))
+        break
+    except ValueError:
+        print("Please enter a number, and ensure it is less than or equal to the number of searches you require")
+        continue
+    if choice > number_req:
+        print("Please make sure the number is within the range requested")
+        continue
+webbrowser.open(searches[choice-1])
