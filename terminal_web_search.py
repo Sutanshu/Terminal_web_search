@@ -2,7 +2,13 @@ from googlesearch import search
 import sys,webbrowser
 
 inp = input("What do you want to search? ")
-number_req=int(input("How many searches do you want to look up? "))
+while True:
+    try:
+        number_req=int(input("How many searches do you want to look up? "))
+        break
+    except ValueError:
+        print ("Please enter a number")
+        continue
 searches=[]
 split_urls= []
 def searching(number,input1):
@@ -18,14 +24,14 @@ for i in searches:
 print("You now have a choice of {} from this list: ".format(inp))
 for i,j in enumerate(split_urls,1):
         print(i,j)
-While True:
+while True:
     try:
         choice = int(input("Enter your desired choice now: "))
+        if choice > number_req:
+            print("Please make sure the number is within the range requested")
+            continue
         break
     except ValueError:
         print("Please enter a number, and ensure it is less than or equal to the number of searches you require")
-        continue
-    if choice > number_req:
-        print("Please make sure the number is within the range requested")
         continue
 webbrowser.open(searches[choice-1])
